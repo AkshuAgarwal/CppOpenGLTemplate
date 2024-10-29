@@ -17,16 +17,12 @@ __declspec(dllexport) unsigned long NvOptimusEnablement = USE_GPU_ENGINE;
 __declspec(dllexport) int AmdPowerXpressRequestHighPerformance = USE_GPU_ENGINE;
 }
 
-static void
-key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
+static void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
-static void
-framebuffer_size_callback(GLFWwindow *window, int width, int height) {
-    glViewport(0, 0, width, height);
-}
+static void framebuffer_size_callback(GLFWwindow *window, int width, int height) { glViewport(0, 0, width, height); }
 
 int main(void) {
     if (!glfwInit())
@@ -45,9 +41,7 @@ int main(void) {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-    GLFWwindow *window = glfwCreateWindow(
-        SCREEN_WIDTH, SCREEN_HEIGHT, "Maze Solver", NULL, NULL
-    );
+    GLFWwindow *window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "My Project", NULL, NULL);
     if (!window) {
         glfwTerminate();
         return -1;
@@ -63,15 +57,11 @@ int main(void) {
     glEnable(GL_DEBUG_OUTPUT);
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
     glDebugMessageCallback(glDebugOutput, 0);
-    glDebugMessageControl(
-        GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE
-    );
+    glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
 #pragma endregion
 
     ShaderProgram shader = ShaderProgram();
-    shader.loadFromFile(
-        RESOURCES_PATH "vertex.vert", RESOURCES_PATH "fragment.frag"
-    );
+    shader.loadFromFile(RESOURCES_PATH "vertex.vert", RESOURCES_PATH "fragment.frag");
     shader.bind();
 
     float vertices[] = {
@@ -90,9 +80,7 @@ int main(void) {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(
-        0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0
-    );
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
 
     while (!glfwWindowShouldClose(window)) {

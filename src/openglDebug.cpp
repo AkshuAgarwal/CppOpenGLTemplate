@@ -3,12 +3,11 @@
 
 // https://learnopengl.com/In-Practice/Debugging
 void GLAPIENTRY glDebugOutput(
-    GLenum source, GLenum type, unsigned int id, GLenum severity,
-    GLsizei length, const char *message, const void *userParam
+    GLenum source, GLenum type, unsigned int id, GLenum severity, GLsizei length, const char *message,
+    const void *userParam
 ) {
     // ignore non-significant error/warning codes
-    if (id == 131169 || id == 131185 || id == 131218 || id == 131204 ||
-        id == 131222 || id == 131140 // dittering error
+    if (id == 131169 || id == 131185 || id == 131218 || id == 131204 || id == 131222 || id == 131140 // dittering error
     )
         return;
     if (type == GL_DEBUG_TYPE_PERFORMANCE)

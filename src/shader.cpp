@@ -18,9 +18,7 @@ std::string readShaderFile(const char *file) {
         return 0;
     }
 
-    str.assign(
-        (std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>()
-    );
+    str.assign((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
 
     return str;
 }
@@ -100,8 +98,7 @@ int ShaderProgram::_checkLinkStatus() {
 }
 
 int ShaderProgram::loadFromData(
-    const char *vertex_shader_data, const char *fragment_shader_data,
-    const char *geometry_shader_data
+    const char *vertex_shader_data, const char *fragment_shader_data, const char *geometry_shader_data
 ) {
     Shader *vertex_shader, *fragment_shader, *geometry_shader;
     GLuint vertex_id = 0, fragment_id = 0, geometry_id = 0;
@@ -120,8 +117,7 @@ int ShaderProgram::loadFromData(
         geometry_id = geometry_shader->id;
     }
 
-    if (vertex_id == 0 || fragment_id == 0 ||
-        (geometry_shader_data && geometry_id == 0)) {
+    if (vertex_id == 0 || fragment_id == 0 || (geometry_shader_data && geometry_id == 0)) {
         return 0;
     }
 
@@ -145,8 +141,7 @@ int ShaderProgram::loadFromData(
 }
 
 int ShaderProgram::loadFromFile(
-    const char *vertex_shader_file, const char *fragment_shader_file,
-    const char *geometry_shader_file
+    const char *vertex_shader_file, const char *fragment_shader_file, const char *geometry_shader_file
 ) {
     std::string vertex_shader_data, fragment_shader_data, geometry_shader_data;
 
@@ -154,15 +149,12 @@ int ShaderProgram::loadFromFile(
     fragment_shader_data = readShaderFile(fragment_shader_file);
 
     if (!geometry_shader_file) {
-        return this->loadFromData(
-            vertex_shader_data.c_str(), fragment_shader_data.c_str(), 0
-        );
+        return this->loadFromData(vertex_shader_data.c_str(), fragment_shader_data.c_str(), 0);
     } else {
         geometry_shader_data = readShaderFile(geometry_shader_file);
 
         return this->loadFromData(
-            vertex_shader_data.c_str(), fragment_shader_data.c_str(),
-            geometry_shader_data.c_str()
+            vertex_shader_data.c_str(), fragment_shader_data.c_str(), geometry_shader_data.c_str()
         );
     }
 }

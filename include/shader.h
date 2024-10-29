@@ -23,12 +23,10 @@ class ShaderProgram {
     ShaderProgram();
 
     int loadFromData(
-        const char *vertex_shader_data, const char *fragment_shader_data,
-        const char *geometry_shader_data = 0
+        const char *vertex_shader_data, const char *fragment_shader_data, const char *geometry_shader_data = 0
     );
     int loadFromFile(
-        const char *vertex_shader_file, const char *fragment_shader_file,
-        const char *geometry_shader_file = 0
+        const char *vertex_shader_file, const char *fragment_shader_file, const char *geometry_shader_file = 0
     );
 
     void bind() const;
