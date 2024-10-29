@@ -1,0 +1,8 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+
+Language: Cpp
+AlignAfterOpenBracket: BlockIndent
+AlignArrayOfStructures: Right
+DerivePointerAlignment: false
+PointerAlignment: Right
